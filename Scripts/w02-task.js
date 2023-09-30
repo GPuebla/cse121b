@@ -4,14 +4,14 @@
 
 /* Step 2 - Variables */
 
-let fullName = "Gabriel Puebla";
+const fullName = "Gabriel Puebla";
 let currentDate = new Date();
 let currentYear = currentDate.getFullYear();
 let profilePicture = "Images/my_photo.jpeg"
 
 /* Step 3 - Element Variables */
 
-const nameElement = document.getElementById("name");
+const nameElement = document.getElementById('name');
 const foodElement = document.getElementById('food');
 const yearElement = document.querySelector('#year');
 const imageElement = document.querySelector("#my_image");
