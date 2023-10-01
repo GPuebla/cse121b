@@ -7,7 +7,7 @@
 const fullName = "Gabriel Puebla";
 let currentDate = new Date();
 let currentYear = currentDate.getFullYear();
-let profilePicture = "Images/my_photo.jpeg"
+let profilePicture = "images/my_photo.jpeg"
 
 /* Step 3 - Element Variables */
 
