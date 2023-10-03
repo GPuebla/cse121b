@@ -14,7 +14,7 @@ function addNumbers(){
     document.document.querySelector('#sum').value = add(addNumber1,addNumber2);
 }
 
-
+document.querySelector('#addNumbers').addEventListener('click',addNumbers);
 
 
 
