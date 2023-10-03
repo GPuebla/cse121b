@@ -53,10 +53,10 @@ let divide = (number1,number2) => number1 / number2;
 
 let divideNumbers = () => {
 
-    let divideNumber1 = Number(document.querySelector('#divide').value);
+    let divideNumber1 = Number(document.querySelector('#dividend').value);
     let divideNumber2 = Number(document.querySelector('#divisor').value);
 
-    document.querySelector('#quotient').value = multiply(divideNumber1,divideNumber2);
+    document.querySelector('#quotient').textContent = multiply(divideNumber1,divideNumber2);
 }
 
 document.querySelector('#divideNumbers').addEventListener('click',divideNumbers);
