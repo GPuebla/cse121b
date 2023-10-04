@@ -80,8 +80,10 @@ document.querySelector('#odds').innerHTML = numbers.filter((num) => num % 2 !== 
 document.querySelector('#evens').innerHTML = numbers.filter((num) => num % 2 === 0);
 
 /* Output Sum of Org. Array */
-document.querySelector('#sumOfArray').innerHTML = numbers.reduce();
+document.querySelector('#sumOfArray').innerHTML = numbers.reduce((accumulator,currentValue) => accumulator + currentValue);
 
 /* Output Multiplied by 2 Array */
+document.querySelector('#multiplied').innerHTML = numbers.map(num => num *2);
 
 /* Output Sum of Multiplied by 2 Array */
+document.querySelector('#sumOfMultiplied').innerHTML = numbers.map(num => num *2).reduce((accumulator,currentValue) => accumulator + currentValue);
