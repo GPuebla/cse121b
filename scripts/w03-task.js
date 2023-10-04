@@ -56,22 +56,31 @@ let divideNumbers = () => {
     let divideNumber1 = Number(document.querySelector('#dividend').value);
     let divideNumber2 = Number(document.querySelector('#divisor').value);
 
-    document.querySelector('#quotient').textContent = multiply(divideNumber1,divideNumber2);
+    document.querySelector('#quotient').value = divide(divideNumber1,divideNumber2);
 }
 
 document.querySelector('#divideNumbers').addEventListener('click',divideNumbers);
 
 /* Decision Structure */
 
+const CurrentDate = new Date();
+const currentYear = CurrentDate.getFullYear();
+
+document.querySelector('#year').innerHTML = currentYear;
 
 /* ARRAY METHODS - Functional Programming */
 /* Output Source Array */
+let numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+document.querySelector('#array').innerHTML = numbers;
 
 /* Output Odds Only Array */
+document.querySelector('#odds').innerHTML = numbers.filter((num) => num % 2 !== 0);
 
 /* Output Evens Only Array */
+document.querySelector('#evens').innerHTML = numbers.filter((num) => num % 2 === 0);
 
 /* Output Sum of Org. Array */
+document.querySelector('#sumOfArray').innerHTML = numbers.reduce();
 
 /* Output Multiplied by 2 Array */
 
