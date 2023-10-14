@@ -42,7 +42,34 @@ const reset = () =>{
 };
 
 /* sortBy Function */
+const sortBy = (temples) =>{
+    reset();
+    let filter = document.querySelector('#sortBy').value;
+    switch (filter) {
+        case "utah":
+            temples.filter((temple) =>
+                temple["location"]
+            
+                )
+            break;
 
+        case "nonutah":
+
+            break;
+        
+        case "older":
+            
+            break;
+
+        case "all":
+        
+            break;
+    
+        default:
+            break;
+    }
+   
+};
 
 
 getTemples();
@@ -51,3 +78,4 @@ getTemples();
 
 
 console.log(templeList);
+console.log(document.querySelector('#sortBy').value);
