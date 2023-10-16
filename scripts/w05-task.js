@@ -10,7 +10,7 @@ let templeList = [];
 
 const displayTemples = (temples) => {
 
-   temples.array.forEach(temple => {
+   temples.forEach(temple => {
 
     const art = document.createElement('article');
     const h3 = document.createElement('h3').textContent = temple['templeName'];
@@ -31,9 +31,12 @@ const displayTemples = (temples) => {
 
 const getTemples = async () => {
     const response = await fetch("https://byui-cse.github.io/cse121b-ww-course/resources/temples.json")
-    .then(data => data.json())
+
+    templeList = await response.json();
+
+    displayTemples(templeList.filter( temple => temple.templeName.includes("Utah")));
+    console.log(templeList.filter( temple => temple.templeName.includes("Utah")));
     
-    templeList.push(response);
 };
 
 /* reset Function */
@@ -47,14 +50,12 @@ const sortBy = (temples) =>{
     let filter = document.querySelector('#sortBy').value;
     switch (filter) {
         case "utah":
-            temples.filter((temple) =>
-                temple["location"]
-            
-                )
+            displayTemples(templeList[0].filter( temple => temple.templeName.includes("Utah")));
+
             break;
 
         case "nonutah":
-
+            //displayTemples(templeList[0].filter( temple => temple.templeName.includes("")));
             break;
         
         case "older":
@@ -74,8 +75,8 @@ const sortBy = (temples) =>{
 
 getTemples();
 
+//console.log(templeList[0].filter( temple => temple.templeName.includes("Utah")));
+console.log(templeList[0]);
+
+
 /* Event Listener */
-
-
-console.log(templeList);
-console.log(document.querySelector('#sortBy').value);
