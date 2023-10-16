@@ -13,16 +13,16 @@ const displayTemples = (temples) => {
    temples.forEach(temple => {
 
     const art = document.createElement('article');
-    const h3 = document.createElement('h3').textContent = temple['templeName'];
+    const h3 = document.createElement('h3').textContent = temple.templeName;
     const imga = document.createElement('img');
 
-    imga.setAttribute('src',temple['imageUrl']);
-    imga.setAttribute('alt',temple['location']);
+    imga.setAttribute('src',temple.imageUrl);
+    imga.setAttribute('alt',temple.location);
 
-    art.appendChild(h3);
-    art.appendChild(imga);
+    art.append(h3);
+    art.append(imga);
 
-    templesElement.appendChild(art);
+    templesElement.append(art);
 
    }); 
 }; 
@@ -31,11 +31,7 @@ const displayTemples = (temples) => {
 
 const getTemples = async () => {
     const response = await fetch("https://byui-cse.github.io/cse121b-ww-course/resources/temples.json")
-
     templeList = await response.json();
-
-    displayTemples(templeList.filter( temple => temple.templeName.includes("Utah")));
-    console.log(templeList.filter( temple => temple.templeName.includes("Utah")));
     
 };
 
@@ -46,27 +42,28 @@ const reset = () =>{
 
 /* sortBy Function */
 const sortBy = (temples) =>{
+
     reset();
+
     let filter = document.querySelector('#sortBy').value;
+    console.log(filter)
+
     switch (filter) {
         case "utah":
-            displayTemples(templeList[0].filter( temple => temple.templeName.includes("Utah")));
+            displayTemples(temples.filter( temple => temple.templeName.includes("Utah")));
 
             break;
 
-        case "nonutah":
-            //displayTemples(templeList[0].filter( temple => temple.templeName.includes("")));
+        case "notutah":
+            displayTemples(temples.filter( temple => !temple.templeName.includes("Utah")));
             break;
         
         case "older":
-            
+            displayTemples(temples.filter( temple => new Date(temple.dedicated) < 1950));
             break;
 
         case "all":
-        
-            break;
-    
-        default:
+            displayTemples(temples);
             break;
     }
    
@@ -80,3 +77,5 @@ console.log(templeList[0]);
 
 
 /* Event Listener */
+
+document.querySelector('#sortBy').addEventListener("change",() => {sortBy(templeList)});
