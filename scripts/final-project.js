@@ -17,7 +17,7 @@ const AddData = (dataBooks) =>{
         bookH3.innerHTML = book.title;
         let isbnNum = book.isbn["0"]
         bookH4.innerHTML = book.first_publish_year;
-        let srcLink = `http://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
+        let srcLink = `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
         bookImg.setAttribute('src',srcLink);
 
         booksElement.append(bookH3);
@@ -32,7 +32,7 @@ const AddData = (dataBooks) =>{
 
 
 const getData = async () => {
-    const response = await fetch("http://openlibrary.org/search.json?q="+inputElement.value)
+    const response = await fetch("https://openlibrary.org/search.json?q="+inputElement.value)
     data = await response.json();
     
     AddData(data.docs);
