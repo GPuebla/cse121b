@@ -50,12 +50,12 @@ const sortBy = (temples) =>{
 
     switch (filter) {
         case "utah":
-            displayTemples(temples.filter( temple => temple.templeName.includes("Utah")));
+            displayTemples(temples.filter( temple => temple.templeName.includes("Utah") || temple.templeName.includes("Provo") || temple.templeName.includes("Salt Lake")));
 
             break;
 
         case "notutah":
-            displayTemples(temples.filter( temple => !temple.templeName.includes("Utah")));
+            displayTemples(temples.filter( temple => !temple.templeName.includes("Utah") && !temple.templeName.includes("Provo") && !temple.templeName.includes("Salt Lake")));
             break;
         
         case "older":
