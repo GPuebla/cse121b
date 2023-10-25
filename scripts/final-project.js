@@ -18,18 +18,20 @@ const AddData = (dataBooks) =>{
 
         const divCard = document.createElement('div')
         divCard.className = "card";
+        divCard.style.margin = "5px";
         divCard.style.width = "20 px";
-        divCard.style.width = "100 px";
+        divCard.style.width = "400 px";
         const bookImg2 = document.createElement('img');
         bookImg2.className = "card-img-top"
-        //bookImg2.style.height = "40 px";
-        //bookImg2.style.width = "30 px";
+        bookImg2.style.height = "360px";
+        //bookImg2.style.width = "150px";
 
         let genericImg = "https://th.bing.com/th/id/OIP.nBwIfauMfjWd0qbnifW7YgHaHa?pid=ImgDet&rs=1";
 
-        let srcImg = await checkImg(`https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`,genericImg);
+        const srcImg = await checkImg(`https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`, genericImg);
+        bookImg2.src = srcImg;
         
-    console.log(srcImg)
+        console.log(srcImg)
 
         bookImg2.src = srcImg;
 
@@ -41,17 +43,17 @@ const AddData = (dataBooks) =>{
         cardTitle.innerHTML = book.title[0];
 
         const cardText = document.createElement('p');
-        cardTitle.className = "card-text"
-        cardTitle.innerHTML = book.publisher[0];
+        cardText.className = "card-text"
+        cardText.innerHTML = book.author_name;
 
         const textTest = document.createElement('h4');
         textTest.innerHTML = bookImg2.textContent;
 
         colElement.append(divCard);
-        divCard.appendChild(bookImg2);
-        divCard.appendChild(divCardBody);
-        divCardBody.appendChild(cardTitle);
-        divCardBody.append(textTest);
+        divCard.append(bookImg2);
+        divCard.append(divCardBody);
+        divCardBody.append(cardTitle);
+        divCardBody.append(cardText);
 
         booksElement.append(colElement);
 
@@ -76,40 +78,28 @@ const reset = () =>{
 //---------------------------------------------------------------------//
 
 const checkImg = (url, optionalImg) => {
-
-    // URL de la imag
-    const imageUrl = url
-
-    // Crea un nuevo objeto de imagen
-    const img = new Image();
-
-    // Define una función para ejecutar cuando la imagen se cargue
-     img.onload = function  () {
-    // Accede a las dimensiones de la imagen
-    const width = this.width;
-    const height = this.height;
-
-    // Verifica el tamaño de la imagen (por ejemplo, 100x100 píxeles)
+    return new Promise((resolve) => {
+      const img = new Image();
+      
+      img.onload = function() {
+        const width = this.width;
+        const height = this.height;
+  
         if (width >= 50 && height >= 50) {
-            // La imagen tiene el tamaño deseado
-            console.log("La imagen tiene el tamaño deseado (100x100 píxeles).");
-            return url
+          resolve(url);
         } else {
-            // La imagen no tiene el tamaño deseado
-            console.log("La imagen no tiene el tamaño deseado.");
-            return optionalImg
+          resolve(optionalImg);
         }
-    };
-
-    // Define una función para ejecutar si la imagen no se puede cargar
-    img.onerror = function() {
-    console.log("Error al cargar la imagen.");
-    };
-
-    // Establece la fuente de la imagen
-    img.src = imageUrl;
-
-}
+      };
+  
+      img.onerror = function() {
+        console.log("Error al cargar la imagen.");
+        resolve(optionalImg);
+      };
+  
+      img.src = url;
+    });
+  };
 
 
 //--------------------------------------------------------------------------------------------//
