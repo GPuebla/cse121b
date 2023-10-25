@@ -14,18 +14,16 @@
 </head>
 
 <body>
-  <div class="container-fluid">
-    <!-- Content here -->
   
-  <nav style="z-index: auto;">
+  <nav style="z-index: 1;">
     <ul id="menu">
       <li><a id="toggleMenu">&equiv;</a></li>
       <li><a href="index.html">Home</a></li>
       <li><a href="w01-task.html">W1 Task</a></li>
       <li><a href="w03-task.html">W3 Task</a></li>
       <li><a href="w04-task.html">W4 Task</a></li>
-      <li><a href="w05-task.html" class="active">W5 Task</a></li>
-      <li><a href="project.html">Project</a></li>
+      <li><a href="w05-task.html" >W5 Task</a></li>
+      <li><a href="project.html" class="active">Project</a></li>
     </ul>
   </nav>
   <!-- modificar -->
@@ -37,23 +35,19 @@
       <h2 style="margin: 20px;">Books</h2>
 
       <div class="container-fluid">
-        <input style="margin: 20px;" type="text" id="input">
-        <button type="button" class="btn btn-primary" onclick="getData()">Get data</button>
+          <input style="margin: 20px;" type="text" id="input">
+          <button type="button" class="btn btn-primary" onclick="getData()">Search books</button>
 
-          <div class="row row-cols-4" id="books">
-          </div>
-        </div>
-
-        <div id="books">
+        <div class="row row-cols-4" id="books">
+        
         </div>
       </div>
         
     </main>
   </div>
- <!-- modificar  -->
 
   <footer>
-    &copy;<span id="year"></span> | Week 05 - Fetching Temple Data | CSE 121b
+    &copy;<span id="year"></span> | Final Project - Gabriel Puebla | CSE 121b
   </footer>
   <script src="scripts/main.js"></script>
   <script>
@@ -61,7 +55,7 @@
   </script>
   <script src="scripts/final-project.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</div>
+<!-- </div> -->
 </body>
 
 </html>

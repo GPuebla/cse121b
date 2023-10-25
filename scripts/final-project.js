@@ -39,28 +39,40 @@ const AddData = (dataBooks) =>{
         divCardBody.className = "card-body";
 
         const cardTitle = document.createElement('h5');
+        cardTitle.style.fontSize = '1rem';
         cardTitle.className = "card-title"
-        cardTitle.innerHTML = book.title[0];
+        cardTitle.innerHTML = book.title;
 
-        const cardText = document.createElement('p');
+        const cardText = document.createElement('p')
+        cardText.style.fontSize = '.6rem';
         cardText.className = "card-text"
-        cardText.innerHTML = book.author_name;
+        cardText.innerHTML = book.author_name[0];
 
-        const textTest = document.createElement('h4');
-        textTest.innerHTML = bookImg2.textContent;
+        const cardYear = document.createElement('p');
+        cardYear.innerHTML = "-" + book.first_publish_year +"-";
+
+        const btn = document.createElement('a');
+        btn.innerHTML = 'More info';
+        btn.className = "btn btn-primary"
+        btn.href = 'https://openlibrary.org/' + book.key;
+        btn.target = "_blank"
+
+
+        //<a href="#" class="btn btn-primary">Go somewhere</a>
 
         colElement.append(divCard);
         divCard.append(bookImg2);
         divCard.append(divCardBody);
         divCardBody.append(cardTitle);
         divCardBody.append(cardText);
+        divCardBody.append(cardYear);
+        divCardBody.append(btn);
 
         booksElement.append(colElement);
 
     });
 
 }
-
 
 const getData = async () => {
     const response = await fetch("https://openlibrary.org/search.json?q="+inputElement.value)
@@ -69,6 +81,7 @@ const getData = async () => {
 
     AddData(data.docs);
 };
+
 
 const reset = () =>{
     booksElement.innerHTML = "";
@@ -93,7 +106,7 @@ const checkImg = (url, optionalImg) => {
       };
   
       img.onerror = function() {
-        console.log("Error al cargar la imagen.");
+        console.log("Error");
         resolve(optionalImg);
       };
   
