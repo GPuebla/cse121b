@@ -1,16 +1,21 @@
 
 let data = [];
+let datafilter = [];
 
 booksElement = document.querySelector('#books');
 inputElement = document.querySelector('#input');
 
 const AddData = (dataBooks) =>{
 
+        
+
         reset();
-        console.log('books',dataBooks);
+        datafilter = []
 
         dataBooks.forEach(async book => {
-            
+          
+          console.log(book)
+        
         let isbnNum = book.isbn[0];
         
         const colElement = document.createElement('div');
@@ -29,9 +34,6 @@ const AddData = (dataBooks) =>{
         let genericImg = "https://th.bing.com/th/id/OIP.nBwIfauMfjWd0qbnifW7YgHaHa?pid=ImgDet&rs=1";
 
         const srcImg = await checkImg(`https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`, genericImg);
-        bookImg2.src = srcImg;
-        
-        console.log(srcImg)
 
         bookImg2.src = srcImg;
 
@@ -57,8 +59,11 @@ const AddData = (dataBooks) =>{
         btn.href = 'https://openlibrary.org/' + book.key;
         btn.target = "_blank"
 
+        let filterElement = document.querySelector('#sortBy')
+        filterElement.style.display = 'block';
 
-        //<a href="#" class="btn btn-primary">Go somewhere</a>
+        let filterButon= document.querySelector('#btnfilter')
+        filterButon.style.display = 'block';
 
         colElement.append(divCard);
         divCard.append(bookImg2);
@@ -69,18 +74,24 @@ const AddData = (dataBooks) =>{
         divCardBody.append(btn);
 
         booksElement.append(colElement);
-
+        
+        filterBooks(datafilter,genericImg,srcImg,book)
     });
 
 }
+
+//---------------------------------------------------------------------//
+
 
 const getData = async () => {
     const response = await fetch("https://openlibrary.org/search.json?q="+inputElement.value)
     data = await response.json();
     
-
+    console.log(data)
     AddData(data.docs);
 };
+
+//---------------------------------------------------------------------//
 
 
 const reset = () =>{
@@ -114,5 +125,53 @@ const checkImg = (url, optionalImg) => {
     });
   };
 
+ //--------------------------------------------------------------------------------------------//
+
+  const printArray = (array) =>{
+    console.log(array)
+    AddData(datafilter)
+    datafilter = []
+  }
+
+  //--------------------------------------------------------------------------------------------//
+
+  const filterBooks = (array, url1,url2, Objt) => {
+
+    if(url1 !== url2){
+      array.push(Objt)
+    }
+  }
+
 
 //--------------------------------------------------------------------------------------------//
+
+/* sortBy Function */
+const sortBy = (data) =>{
+
+  reset();
+
+  let filter = document.querySelector('#sortBy').value;
+  console.log(filter)
+
+  switch (filter) {
+      case "modern":
+          AddData(data.docs.filter( book => new Date(book.first_publish_year) >= 2000));
+
+          break;
+
+      case "contemporary":
+          AddData(data.docs.filter( book => new Date(book.first_publish_year) < 2000));
+          break;
+      
+      case "antique":
+          AddData(data.docs.filter( book => new Date(book.first_publish_year) < 1900));
+          break;
+
+      case "all":
+          AddData(data.docs);
+          break;
+  }
+ 
+};
+
+document.querySelector('#sortBy').addEventListener("change",() => {sortBy(data)});

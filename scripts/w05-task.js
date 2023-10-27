@@ -79,3 +79,4 @@ console.log(templeList[0]);
 /* Event Listener */
 
 document.querySelector('#sortBy').addEventListener("change",() => {sortBy(templeList)});
+
